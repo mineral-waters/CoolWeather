@@ -1,5 +1,6 @@
 package com.coolweather.android;
 
+
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -70,7 +71,6 @@ public class ChooseAreaFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
         super.onActivityCreated(savedInstanceState);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -137,7 +137,7 @@ public class ChooseAreaFragment extends Fragment {
         }
     }
 
-    private void queryCounties(){
+    private void queryCounties() {
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
         countyList = DataSupport.where("cityid=?",String.valueOf(selectedCity.getId())).find(County.class);
@@ -157,7 +157,7 @@ public class ChooseAreaFragment extends Fragment {
         }
     }
 
-    private void queryFromServer(String address,final String type){
+    private void queryFromServer(String address,final String type) {
         showProgressDialog();
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
@@ -205,15 +205,15 @@ public class ChooseAreaFragment extends Fragment {
         });
     }
 
-    private void showProgressDialog(){
+    private void showProgressDialog() {
         if (progressDialog == null){
             progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("正在加载中...");
+            progressDialog.setMessage("正在加载...");
             progressDialog.setCanceledOnTouchOutside(false);
         }
     }
 
-    private void closeProgressDialog(){
+    private void closeProgressDialog() {
         if (progressDialog != null){
             progressDialog.dismiss();
         }

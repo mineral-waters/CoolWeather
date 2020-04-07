@@ -33,7 +33,7 @@ public class Utility {
         return false;
     }
 
-    public static boolean handleCityResponse(String response,int provinceCode) {
+    public static boolean handleCityResponse(String response,int provinceId) {
 
         if (!TextUtils.isEmpty(response)) {
             try {
@@ -44,7 +44,7 @@ public class Utility {
                     City city = new City();
                     city.setCityName(cityObject.getString("name"));
                     city.setCityCode(cityObject.getInt("id"));
-                    city.setProvinceCode(provinceCode);
+                    city.setProvinceId(provinceId);
                     city.save();
                 }
                 return true;
