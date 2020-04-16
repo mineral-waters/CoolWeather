@@ -17,7 +17,6 @@ public class Suggestion {
         public String info;
 
     }
-
     public class CarWash{
         @SerializedName("txt")
         public String info;

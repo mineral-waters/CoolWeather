@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,11 +50,11 @@ public class WeatherActivity extends AppCompatActivity {
         titleCity = findViewById(R.id.title_city);
         titleUpdateTime = findViewById(R.id.title_update_time);
         degreeText = findViewById(R.id.degree_text);
-        weatherInfoText =  findViewById(R.id.weather_info_text);
+        weatherInfoText = findViewById(R.id.weather_info_text);
         forecastLayout = findViewById(R.id.forecast_layout);
         aqiText = findViewById(R.id.aqi_text);
         pm25Text = findViewById(R.id.pm25_text);
-        comfortText =  findViewById(R.id.comfort_text);
+        comfortText = findViewById(R.id.comfort_text);
         carWashText = findViewById(R.id.car_wash_text);
         sportText = findViewById(R.id.sport_text);
 
@@ -74,7 +73,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     public void requestWeather(final String weatherId){
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=b5e1ba0b9fb8429d9eab82fbd912ea20";
-        HttpUtil.sendOkHttpRequest(weatherUrl, new Callback(){
+        HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 final String responseText = response.body().string();
@@ -82,7 +81,8 @@ public class WeatherActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (weather!= null && "ok".equals(weather.status)){
+                        if (weather!=null && "ok".equals(weather.status)){
+
 
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
 
@@ -95,6 +95,7 @@ public class WeatherActivity extends AppCompatActivity {
                         }else{
 
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
