@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <service
+            android:name="com.coolweather.android.service.AutoUpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name="com.coolweather.android.WeatherActivity" />
         <activity android:name="com.coolweather.android.MainActivity">
             <intent-filter>
@@ -21,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
