@@ -20,6 +20,15 @@
         android:textColor="#fff"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/title_menu"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="62dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_home"/>
+
     <TextView
         android:id="@+id/title_update_time"
         android:layout_width="wrap_content"
@@ -29,5 +38,7 @@
         android:layout_margin="10dp"
         android:textSize="16sp"
         android:textColor="#fff" />
+
+
 
 </RelativeLayout>

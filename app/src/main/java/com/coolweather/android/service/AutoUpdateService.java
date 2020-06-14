@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.view.Menu;
 
 import com.bumptech.glide.ListPreloader;
 import com.coolweather.android.gson.Weather;
@@ -23,8 +24,13 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class AutoUpdateService extends Service {
+
+    public int anHour;
+
     public AutoUpdateService() {
     }
+
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -37,8 +43,14 @@ public class AutoUpdateService extends Service {
         updateWeather();
         updateBingPic();
         //定时任务
+
+
+
         AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        int anHour = 60 * 60 * 1000;//1小时
+
+        int Time = intent.getIntExtra("Time",1);
+        anHour = Time * 1000;
+
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;    //设置触发时间
         Intent i = new Intent(this,AutoUpdateService.class);
         PendingIntent pi = PendingIntent.getService(this,0,i,0);

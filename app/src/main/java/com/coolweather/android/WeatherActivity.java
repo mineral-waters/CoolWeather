@@ -12,10 +12,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +60,9 @@ public class WeatherActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     private Button navButton;
 
+    private Button menu;
+    public static int TIME;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +77,15 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_weather);
+
+        menu = findViewById(R.id.title_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(menu);
+            }
+        });
+
 
         weatherLayout = findViewById(R.id.weather_layout);
         titleCity = findViewById(R.id.title_city);
@@ -122,6 +136,36 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+    public void showPopupMenu(View view){
+        //View当前pop显示的相对位置
+        PopupMenu popupMenu = new PopupMenu(this,view);
+        //menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.submenu,popupMenu.getMenu());
+        //menu点击事件
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.one:
+                        Intent intent = new Intent(WeatherActivity.this,AutoUpdateService.class);
+                        TIME = Integer.parseInt(item.getTitle().toString().trim());
+                        intent.putExtra("Time",TIME);
+                        startService(intent);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+
+
+
 
     public void requestWeather(final String weatherId){
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=b5e1ba0b9fb8429d9eab82fbd912ea20";
