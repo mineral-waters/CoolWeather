@@ -26,6 +26,7 @@ import okhttp3.Response;
 public class AutoUpdateService extends Service {
 
     public int anHour;
+    private int time;
 
     public AutoUpdateService() {
     }
@@ -44,12 +45,11 @@ public class AutoUpdateService extends Service {
         updateBingPic();
         //定时任务
 
-
-
         AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
-        int Time = intent.getIntExtra("Time",1);
-        anHour = Time * 1000;
+
+        time = intent.getIntExtra("extra_time",60);
+        anHour = time * 1000;
 
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;    //设置触发时间
         Intent i = new Intent(this,AutoUpdateService.class);

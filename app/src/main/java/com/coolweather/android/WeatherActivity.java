@@ -61,7 +61,6 @@ public class WeatherActivity extends AppCompatActivity {
     private Button navButton;
 
     private Button menu;
-    public static int TIME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,12 +149,15 @@ public class WeatherActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.one:
+                        int time = 1;
                         Intent intent = new Intent(WeatherActivity.this,AutoUpdateService.class);
-                        TIME = Integer.parseInt(item.getTitle().toString().trim());
-                        intent.putExtra("Time",TIME);
+                        intent.putExtra("extra_time",time);
                         startService(intent);
                         break;
+                        default:break;
+
                 }
+
                 return false;
             }
         });
