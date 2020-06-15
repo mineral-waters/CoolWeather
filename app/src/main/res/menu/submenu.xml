@@ -7,19 +7,19 @@
 
         <item
             android:id="@+id/one"
-            android:title="1"/>
+            android:title="1分钟"/>
         <item
             android:id="@+id/two"
-            android:title="2"/>
+            android:title="2分钟"/>
         <item
             android:id="@+id/six"
-            android:title="6"/>
+            android:title="6分钟"/>
         <item
             android:id="@+id/twl"
-            android:title="12"/>
+            android:title="12分钟"/>
         <item
             android:id="@+id/twn"
-            android:title="24"/>
+            android:title="系统默认"/>
 
 
     </group>

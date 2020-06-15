@@ -25,7 +25,7 @@ import okhttp3.Response;
 
 public class AutoUpdateService extends Service {
 
-    public int anHour;
+    private static final int ONE_MINUTE = 60 * 1000;
     private int time;
 
     public AutoUpdateService() {
@@ -46,10 +46,9 @@ public class AutoUpdateService extends Service {
         //定时任务
 
         AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        time = intent.getIntExtra("extra_time",0);
 
-
-        time = intent.getIntExtra("extra_time",60);
-        anHour = time * 1000;
+        int anHour = time * ONE_MINUTE;
 
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;    //设置触发时间
         Intent i = new Intent(this,AutoUpdateService.class);
